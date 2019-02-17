@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+  var getSingle = function (fn) {
+    var result
+    return function () {
+      // 如果result已经创建过，则直接返回。否则调用创建函数fn
+      return result || (result = fn.apply(this,arguments));
+    }
+  }
+
+  var createDiv = function(){
+    var div = document.createElement('div');
+    div.innerHTML = '我是登录浮窗';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    return div;
+  }
+
+  var Single = getSingle(createDiv);
+  //------------------------
+
+
+  var instance1 = Single();
+  var instance2 = Single();
+  //这里有两句，但最终只创建了一个div
+
+  console.log(instance1===instance2)
+</script>
+
+</body>
+</html>
