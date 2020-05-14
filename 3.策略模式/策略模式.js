@@ -1,4 +1,8 @@
 // 不同的年终奖发放策略
+// 1）把所有的策略对象封装成一个策略对象
+// 2）定义函数，分配对应的请求返回对应的策略
+
+
 var strategies = {
     a : function (salary) {
         return salary*4
